@@ -6,6 +6,8 @@ import ArticlesList from "@pages/ArticlesList";
 import ArticleDetails from "@pages/ArticleDetails";
 import Loader from "@components/Loader";
 
+const pageNotFoundError: Error = new Error("Requested page not found");
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,13 +32,13 @@ const router = createBrowserRouter([
           },
           {
             path: "*",
-            element: <ErrorPage />,
+            element: <ErrorPage errorResponse={pageNotFoundError} />,
           },
         ],
       },
       {
         path: "*",
-        element: <ErrorPage />,
+        element: <ErrorPage errorResponse={pageNotFoundError} />,
       },
     ],
   },
