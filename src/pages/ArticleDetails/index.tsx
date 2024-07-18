@@ -26,15 +26,21 @@ const ArticleDetails = () => {
     navigate("/");
   };
 
+  const renderArticleDetails = () => {
+    if (isPending) {
+      return <ArticlesDetailsSkeleton />;
+    }
+
+    if (isError) {
+      return <Typography>{error?.message}</Typography>;
+    }
+
+    return Boolean(data) && <ArticlesDetailsCard article={data} />;
+  };
+
   return (
     <Drawer anchor="right" open={true} onClose={handleDrawerClose}>
-      {isPending ? (
-        <ArticlesDetailsSkeleton />
-      ) : isError ? (
-        <Typography>{error.message}</Typography>
-      ) : (
-        data && <ArticlesDetailsCard article={data} />
-      )}
+      {renderArticleDetails()}
     </Drawer>
   );
 };

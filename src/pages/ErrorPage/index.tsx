@@ -4,9 +4,8 @@ import { useRouteError } from "react-router-dom";
 import { ErrorResponse } from "@interfaces/index";
 
 const ErrorPage = ({ errorResponse }: { errorResponse?: Error }) => {
-  const error: ErrorResponse = errorResponse
-    ? errorResponse
-    : (useRouteError() as ErrorResponse);
+  const error: ErrorResponse =
+    errorResponse ?? (useRouteError() as ErrorResponse);
 
   return (
     <Box
@@ -23,7 +22,7 @@ const ErrorPage = ({ errorResponse }: { errorResponse?: Error }) => {
         Something went wrong
       </Typography>
       <Typography variant="body1">
-        {error?.statusText || error?.message}
+        {error?.statusText ?? error?.message}
       </Typography>
     </Box>
   );
