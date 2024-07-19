@@ -20,6 +20,6 @@ jobs:
       - name: Build
         run: yarn build
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@main
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
