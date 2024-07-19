@@ -28,10 +28,17 @@
       "@interfaces/*": ["./src/interfaces/*"],
       "@utils/*": ["./src/utils/*"],
       "@pages/*": ["./src/pages/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@tests/*": ["./tests/*"]
     }
   },
-  "types": ["node"],
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["src/**/*.test.tsx", "src/**/*.test.ts"]
+  "types": ["node", "vitest/globals", "@testing-library/jest-dom"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.test.ts"
+  ],
+  "exclude": ["node_modules"]
 }

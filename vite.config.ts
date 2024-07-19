@@ -2,6 +2,7 @@ import path, { resolve } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "url";
+import * as sass from "sass";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -17,7 +18,20 @@ export default defineConfig(() => {
         "@interfaces": resolve(__dirname, "./src/interfaces"),
         "@pages": resolve(__dirname, "./src/pages"),
         "@config": resolve(__dirname, "./src/config"),
+        "@tests": resolve(__dirname, "./tests"),
       },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          implementation: sass,
+        },
+      },
+    },
+    test: {
+      environment: "jsdom",
+      globals: true,
+      setupFiles: "./tests/setup.ts",
     },
   };
 });

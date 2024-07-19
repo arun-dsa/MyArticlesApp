@@ -4,12 +4,13 @@ import { Button, Card, CardActions, CardContent, Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import ShareIcon from "@mui/icons-material/Share";
+import { NAVIGATION_LINKS } from "@config/constants";
 
 const ArticlesCard = ({ article }: { article: ArticlesDetailsResponse }) => {
   const navigate = useNavigate();
 
   const handleViewMore = () => {
-    navigate(`/articles/${article.id}`);
+    navigate(`${NAVIGATION_LINKS.ARTICLES}/${article.id}`);
   };
 
   return (
@@ -46,7 +47,7 @@ const ArticlesCard = ({ article }: { article: ArticlesDetailsResponse }) => {
           variant="outlined"
           startIcon={<ShareIcon />}
           sx={{ textTransform: "none" }}
-          data-testid={`article-share-${article.id}`}
+          data-testid={`share-article-${article.id}`}
         >
           Share
         </Button>
