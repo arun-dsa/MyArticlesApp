@@ -28,7 +28,7 @@ const ArticlesList = () => {
               xs={12}
               sm={6}
               md={4}
-              data-testid={`article-card-skeleton-${id}`}
+              data-testid={`article-card-skeleton`}
             >
               <ArticlesSkeleton id={id} />
             </Grid>

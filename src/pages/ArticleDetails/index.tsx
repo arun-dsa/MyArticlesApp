@@ -8,6 +8,7 @@ import ArticlesDetailsSkeleton from "@components/ArticleDetailsSkeleton";
 
 const ArticleDetails = () => {
   const { id = "" } = useParams();
+  console.log("id", id);
 
   if (!id) {
     return;
@@ -32,7 +33,11 @@ const ArticleDetails = () => {
     }
 
     if (isError) {
-      return <Typography>{error?.message}</Typography>;
+      return (
+        <Typography data-testid="article-details-error">
+          {error?.message}
+        </Typography>
+      );
     }
 
     return Boolean(data) && <ArticlesDetailsCard article={data} />;

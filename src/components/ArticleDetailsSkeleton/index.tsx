@@ -25,7 +25,7 @@ const ArticlesDetailsSkeleton = () => {
         <DetailsCardTitleText
           gutterBottom
           variant="h5"
-          data-testid={`article-details-title-skeleton`}
+          data-testid={`article-details-skeleton`}
         >
           <Skeleton variant="rectangular" width="100%" height={40} />
           <CloseIcon onClick={handleBackAction} cursor="pointer" />

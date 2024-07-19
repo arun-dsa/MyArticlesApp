@@ -26,6 +26,7 @@ const ArticlesDetailsCard = ({
         width: { xs: "100vw", md: "50vw" },
         padding: "1rem",
       }}
+      data-testid={`article-details-card-${article.id}`}
     >
       <Stack>
         <DetailsCardTitleText

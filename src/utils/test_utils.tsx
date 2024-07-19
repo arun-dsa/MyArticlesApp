@@ -23,17 +23,32 @@ export const routeWrapper = (
 };
 
 export const apiHandlers = () => {
-  console.log("API", API_URL);
   return {
-    getAllArticle: (data: ArticlesDetailsResponse[]) =>
+    getAllArticle: (data?: ArticlesDetailsResponse[]) =>
       http.get(`${API_URL}/assignment/articles`, () => {
         // respond using a mocked JSON body
         return HttpResponse.json(data || ARTICLES);
       }),
-    getAllArticleId: (data: ArticlesDetailsResponse) =>
-      http.get(`${API_URL}/assignment/articles/${ARTICLES[0]?.id}`, () => {
+    getAllArticleWithError: () =>
+      http.get(`${API_URL}/assignment/articles`, () => {
         // respond using a mocked JSON body
-        return HttpResponse.json(data || ARTICLES[0]);
+        return new HttpResponse(null, {
+          status: 500,
+          statusText: "Server Error",
+        });
+      }),
+    getArticleById: (data: ArticlesDetailsResponse) =>
+      http.get(`${API_URL}/assignment/articles/${data?.id}`, () => {
+        // respond using a mocked JSON body
+        return HttpResponse.json(data);
+      }),
+    getArticleByIdWithError: (data: ArticlesDetailsResponse) =>
+      http.get(`${API_URL}/assignment/articles/${data?.id}`, () => {
+        // respond using a mocked JSON body
+        return new HttpResponse(null, {
+          status: 500,
+          statusText: "Server Error",
+        });
       }),
   };
 };
