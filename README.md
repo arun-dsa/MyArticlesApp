@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+## New York Times Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Overview
 
-Currently, two official plugins are available:
+This initiative is a web application that retrieves and showcases articles using the API. Users can explore trending articles and access detailed information about each one.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The following routes/pages are included in this application:
 
-## Expanding the ESLint configuration
+1. Articles Listing Page - This page will retrieve the most popular articles from the API and display them using a grid layout.
+2. Article Details Page - This page will show the details of the chosen article in a side drawer view.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Snapshots
 
-- Configure the top-level `parserOptions` property like this:
+1. Articles Listing Page
+   ![article listing page](public/articleListing.png)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. Article Description Page
+   ![details page](public/articleDetailsPage.png)
+
+### Setup Guide
+
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   ```
+2. Change directory to the newly cloned folder:
+   ```
+   cd MyArticlesApp
+   ```
+3. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+   OR
+
+   ```
+   yarn
+   ```
+
+### Operation
+
+To start the development server, run:
+
+```
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The application will run default in Port 3000. Access it via web browser at http://localhost:5173
+
+### Technology stack
+
+- `Typescript`
+- `React v18.3`
+- `React Router v6`
+- `React Query` for caching the api results locally
+- `ESlint` for linting
+- `Prettier` for code formatting
+- `SonarQube` for code anaylsis
+- `Material UI v5`
+- `React testing library`
+- `Vitest`
+
+### Scripts
+
+- `dev`: Start the development server.
+- `build`: Build the application for production.
+- `test`: Run tests using Jest.
+- `coverage`: Run tests with coverage report.
+- `lint`: Run the eslint rules.
+- `preview`: Preview the application locally.
