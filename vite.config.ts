@@ -32,6 +32,9 @@ export default defineConfig(() => {
       environment: "jsdom",
       globals: true,
       setupFiles: "./tests/setup.ts",
+      coverage: {
+        reporter: ["text", "html", "clover", "json", "lcov"],
+      },
     },
   };
 });
