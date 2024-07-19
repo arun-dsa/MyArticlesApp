@@ -1,4 +1,4 @@
-import { screen, render, waitFor } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import { setupServer } from "msw/node";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,6 +15,24 @@ const queryClient = new QueryClient({
   },
 });
 
+const pageRenderTests = () => {
+  const { container } = render(
+    <QueryClientProvider client={queryClient}>
+      {routeWrapper([{ path: "/", element: <ArticleList /> }])}
+    </QueryClientProvider>
+  );
+
+  expect(screen.getAllByTestId("article-card-skeleton")).toHaveLength(10);
+
+  ARTICLES?.forEach((article) =>
+    expect(
+      screen.queryByTestId(`article-card-${article.id}`)
+    ).not.toBeInTheDocument()
+  );
+
+  return container;
+};
+
 describe("Article List test", () => {
   const server = setupServer(apiHandlers()?.getAllArticle());
 
@@ -28,20 +46,7 @@ describe("Article List test", () => {
   afterAll(() => server.close());
 
   test("Article List screen render", async () => {
-    const { container } = render(
-      <QueryClientProvider client={queryClient}>
-        {routeWrapper([{ path: "/", element: <ArticleList /> }])}
-      </QueryClientProvider>
-    );
-
-    expect(screen.getAllByTestId("article-card-skeleton")).toHaveLength(10);
-
-    ARTICLES?.forEach((article) =>
-      expect(
-        screen.queryByTestId(`article-card-${article.id}`)
-      ).not.toBeInTheDocument()
-    );
-
+    const container = pageRenderTests();
     await screen.findByTestId(`article-card-${ARTICLES[0].id}`);
 
     ARTICLES?.map((article) =>
@@ -67,19 +72,7 @@ describe("Article List test with Error", () => {
   afterAll(() => server.close());
 
   test("Error screen render", async () => {
-    const { container } = render(
-      <QueryClientProvider client={queryClient}>
-        {routeWrapper([{ path: "/", element: <ArticleList /> }])}
-      </QueryClientProvider>
-    );
-
-    expect(screen.getAllByTestId("article-card-skeleton")).toHaveLength(10);
-
-    ARTICLES?.forEach((article) =>
-      expect(
-        screen.queryByTestId(`article-card-${article.id}`)
-      ).not.toBeInTheDocument()
-    );
+    const container = pageRenderTests();
 
     await screen.findByTestId("error-page");
 
